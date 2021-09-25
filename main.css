@@ -4,15 +4,21 @@
   padding: 15px 0 0 15px;
 }
 
-span {
+#cross {
+  position: relative;
   color: red;
+  cursor: pointer;
+  /* display: block; */
 }
 
 #firstScrn {
-  top: 7px;
   position: absolute;
-  left: 10px;
+  top: 7px;
+  left: 55px;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  list-style: none;
 }
 
 #block {
@@ -26,8 +32,8 @@ span {
   margin: 15px 0;
 }
 
-li,
-ul {
+
+ul li {
   font-size: 18px;
   font-weight: bold;
   list-style: none;

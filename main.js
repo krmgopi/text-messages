@@ -1,6 +1,10 @@
 
 let btnAdd = document.querySelector('button'); // selecting button send
-let input = document.querySelector('input'); //selecting input
+// let input = document.querySelector('input'); //selecting input
+let firstScreen = document.getElementById('firstScrn');
+let msg = document.getElementById('msg'); // selecting input  
+let cross = document.getElementById('cross');
+cross.addEventListener('click', deleteTxtFromFirstScrn)
 
 //action for a send
 btnAdd.onclick = function () {
@@ -11,15 +15,20 @@ function checkValidation() {
     let formField = document.forms["Form1"]["message"].value;
     if (formField == "") {
         alert("Message must be filled out");
+        msg.focus()
+        return false;
     } else {
-        addTextToScreenTwo();
+        console.log(msg.value);
+        addTextToScreenTwo(msg.value);
         addTextToScreenOne();
+        msg.value = ""
     }
 
 };
 
 function addTextToScreenTwo() {
-    let text = input.value;
+    let text = msg.value;
+    console.log(text);
     let ul = document.getElementById('ul');
     let li = document.createElement("li");
     let cls = li.classList.add("secondScreen")
@@ -33,16 +42,13 @@ function addTextToScreenTwo() {
     }
 
 };
-let firstScreen = document.getElementById('firstScrn');
 
-function addTextToScreenOne() {
-    // let firstScreen = document.getElementById('firstScrn');
-    let text = document.createElement('li');
-    let childEl = firstScreen.appendChild(text);
-    setText()
+
+function addTextToScreenOne(inputValue) {
+    setText(inputValue)
 };
 
-function setText() {
+function setText(inputValue) {
     // let firstScreen = document.getElementById('firstScrn');
     let arr = createArray();
     // let counter = 0;
@@ -53,24 +59,15 @@ function setText() {
         // counter = (counter + 1) % arr.length;
     }
     timeoutID = setInterval(putInterval, 1100);
-    setTimeout(() => clearInterval(timeoutID), 2200); 
-   
+    setTimeout(() => clearInterval(timeoutID), 2200);    
 };
 
 
-// function clearInterval(timeoutID) {
-//     clearTimeout(timeoutID);
-// }
+function clearInterval(timeoutID) {
+    clearTimeout(timeoutID);
+}
 
 // let count = setInterval(putInterval(), 1100);
-let cross = document.getElementById('cross');
-
-cross.addEventListener('click', () => {
-    // clearInterval(count);
-    // clearTimeout();
-    console.log('it works');
-})
-
 
 //create ann array
 function createArray() {
@@ -85,3 +82,7 @@ function createArray() {
 
 
 //action for delete an element
+function deleteTxtFromFirstScrn(){
+    console.log("clicked...");
+    firstScreen.innerHTML = ""
+}
